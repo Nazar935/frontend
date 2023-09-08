@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Форма реєстрації</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Реєстрація</h1>
+        <form action="action_page.php">
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Введіть Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Введіть дійсну адресу електронної пошти">
+            <span class="error-message">Введіть дійсну адресу електронної пошти</span>
+
+            <label for="psw"><b>Пароль</b></label>
+            <input type="password" placeholder="Введіть пароль" name="psw" required>
+            <span class="error-message">Це поле обов'язкове</span>
+
+            <label for="psw-repeat"><b>Повторіть пароль</b></label>
+            <input type="password" placeholder="Повторіть пароль" name="psw-repeat" required>
+            <span class="error-message">Паролі не співпадають</span>
+            <button type="submit" class="registerbtn">Зареєструватися</button>
+        </form>
+
+        <div class="container signin">
+            
+        </div>
+    </div>
+</body>
+</html>
