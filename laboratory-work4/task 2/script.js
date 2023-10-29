@@ -1,6 +1,4 @@
-// script.js
 const accordionItems = document.querySelectorAll('.accordion-item');
-
 accordionItems.forEach((item) => {
     const header = item.querySelector('.accordion-header');
     const button = header.querySelector('.toggle-button');
