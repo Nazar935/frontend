@@ -22,7 +22,7 @@ td:nth-child(even) {
 }
 
 #second {
-    color: blue;
+    color: #0000ff;
     background: lightblue;
     font-size: 14px;
     padding: 5px;
