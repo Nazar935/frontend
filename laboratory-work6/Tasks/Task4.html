@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task4</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #addBlock {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .block {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="addBlock">Додати поле</button>
+    <div id="mainBlock"></div>
+    <script>
+        let countBlocks = 0;
+        let addBlock = document.querySelector("#addBlock");
+        let content = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries";
+        addBlock.addEventListener("click", function () {
+            let mainBlock = document.querySelector("#mainBlock");
+            let block = document.createElement("div");
+            block.classList.add("block");
+            countBlocks++;
+            block.innerHTML += "<button id=\"buttonEdit\" onclick=\"Edit(this)\">Редагувати</button>";
+            block.innerHTML += "<button id=\"buttonDelete\" onclick=\"Delete(this)\">Видалить</button>";
+            block.innerHTML += "<br>";
+            block.innerHTML += "<textarea id=\"inputArea\" readonly=\"true\" rows=\"10\" cols=\"30\">  " + content + "</textarea>";
+            mainBlock.appendChild(block);
+        });
+
+        function Delete(currentBlock) {
+            let parent = currentBlock.parentNode;
+            parent.remove();
+        }
+
+        function Save(current, object) {
+            object.setAttribute("readonly", "true");
+            current.remove();
+        }
+
+        function Edit(currentBlock) {
+            let parent = currentBlock.parentNode;
+            let currentcontent = parent.querySelector("#inputArea").value;
+            parent.querySelector("#inputArea").remove();
+
+            let textarea = document.createElement("textarea");
+            textarea.id = "inputArea";
+            textarea.rows = "10";
+            textarea.cols = "30";
+            textarea.value = currentcontent;
+
+            let saveButton = document.createElement("button");
+            saveButton.textContent = "Зберегти";
+            saveButton.onclick = function () {
+                Save(this, textarea);
+            };
+
+            parent.appendChild(textarea);
+            parent.appendChild(saveButton);
+            parent.appendChild(document.createElement("br"));
+        }
+    </script>
+</body>
+
+</html>

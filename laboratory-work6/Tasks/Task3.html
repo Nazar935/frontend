@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Task3</title>
+    <style>
+        td {
+            width: 30px;
+            height: 30px;
+            border: 4px solid white;
+        }
+
+        .tdStyle {
+            width: 30px;
+            height: 30px;
+            border: 4px solid black;
+            empty-cells: show;
+        }
+
+        #gradient {
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="checkButton">Додати</button>
+    <table id="myTable">
+        <tr>
+            <td style="background-color: red;" id="colorRed" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: blue;" id="colorBlue" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: yellow;" id="colorYellow" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: green;" id="colorGreen" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: black;" id="colorBlack" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: white;" id="colorWhite" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: pink;" id="colorPink" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: purple;" id="colorPurple" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: magenta;" id="colorMagenta" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+    </table>
+    <canvas id="gradient"></canvas>
+    <script>
+        function doubleClick(color) {
+            const isActive = color.getAttribute("data-active");
+            if (isActive === "false") {
+                color.style.border = "4px solid lightblue";
+                color.setAttribute("data-active", "true");
+            } else {
+                color.style.border = "0px";
+                color.setAttribute("data-active", "false");
+            }
+        }
+        let checkButton = document.querySelector("#checkButton");
+        color = document.querySelector("#inputColor");
+        checkButton.addEventListener("click", function () {
+            let arrColors = [];
+            let allColors = document.querySelectorAll("td");
+            let rectangleGradient = document.querySelector("#gradient");
+            for (let i = 0; i < allColors.length; i++) {
+                switch (allColors[i].id) {
+                    case "colorRed": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("red");
+                        }
+                    }
+                        break;
+                    case "colorBlue": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("blue");
+
+                        }
+                    }
+                        break;
+                    case "colorYellow": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("yellow");
+                        }
+                    }
+                        break;
+                    case "colorGreen": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("green");
+                        }
+                    }
+                        break;
+                    case "colorBlack": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("black");
+                        }
+                    }
+                        break;
+                    case "colorWhite": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("white");
+                        }
+                    }
+                        break;
+                    case "colorPink": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("pink");
+                        }
+                    }
+                        break;
+                    case "colorPurple": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("purple");
+                        }
+                    }
+                        break;
+                    case "colorMagenta": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            arrColors.push("magenta");
+                        }
+                    }
+                        break;
+                }
+            }
+            console.log(arrColors);
+
+            let ctx = rectangleGradient.getContext("2d");
+            let gradient = ctx.createLinearGradient(0, 0, 170, 0);
+            let j = 0.1;
+            for (let i = 0; i < arrColors.length; i++) {
+                gradient.addColorStop(j, arrColors[i]);
+                j += 0.1;
+            }
+            ctx.fillStyle = gradient;
+            ctx.fillRect(20, 20, 150, 100);
+
+
+        });
+    </script>
+</body>
+
+</html>

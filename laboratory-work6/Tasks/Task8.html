@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .main {
+            font-size: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="../style.css">
+    <title>Task8</title>
+</head>
+
+<body>
+    <div class="main">
+        <ol>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Володар кілець» Джон Р. Р. Толкін</li>
+            </div>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Гордість і упередження» Джейн Остін</li>
+            </div>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Темні початки» Філіп Пулман</li>
+            </div>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Автостопом по галактиці» Дуглас Адамс</li>
+            </div>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Гаррі Поттер і Кубок вогню» Джоан Роулінг</li>
+            </div>
+            <div onclick="toggle(this)" data-active="false">
+                <li>«Вбити пересмішника» Харпер Лі</li>
+            </div>
+        </ol>
+    </div>
+
+    <script>
+        function toggle(current) {
+            const isActive = current.getAttribute("data-active");
+            if (isActive === "false") {
+                current.style.backgroundColor = "green";
+                current.setAttribute("data-active", "true");
+            } else {
+                current.style.backgroundColor = "white";
+
+                current.setAttribute("data-active", "false");
+            }
+        }
+    </script>
+</body>
+
+</html>

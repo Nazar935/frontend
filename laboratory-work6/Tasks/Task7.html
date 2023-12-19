@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task7</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        td {
+            display: flex;
+            justify-content: center;
+        }
+
+        .blockComment {
+            width: 500px;
+            height: 100px;
+            resize: none;
+        }
+
+        .blockName {
+            width: 500px;
+            height: 30px;
+        }
+
+        .blockButton {
+            width: 506px;
+            height: 30px;
+            margin-bottom: 70px;
+        }
+
+        .divFix {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid black;
+        }
+
+        .comment {
+            width: 500px;
+            height: 100px;
+            margin: 0px;
+            padding: 0px;
+            resize: none;
+        }
+
+        .name {
+            width: 500px;
+            margin: 0px;
+            padding: 0px;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1">
+
+        <h1>Add comment</h1>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" class="blockName" name="username">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea type="text" class="blockComment" name="usercomment"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="blockButton">
+                </td>
+            </tr>
+        </table>
+        <div id="mainBlock"></div>
+
+    </form>
+    <script>
+        const formElement = document.getElementById('form1');
+        let mainBlock = document.querySelector("#mainBlock");
+        formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(formElement);
+            const nameForm = formData.get('username');
+            const commentForm = formData.get('usercomment');
+            let table = document.createElement("table");
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            let combinedInput = document.createElement("input");
+
+            let nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.value = nameForm;
+            nameInput.readOnly = true;
+            nameInput.classList.add("name");
+
+            let commentTextarea = document.createElement("textarea");
+            commentTextarea.value = commentForm;
+            commentTextarea.readOnly = true;
+            commentTextarea.classList.add("comment");
+
+            let currentDateTime = getCurrentDateTime();
+            combinedInput.value = `${currentDateTime}`;
+
+            nameInput.style.textAlign = "left";
+            combinedInput.style.textAlign = "right";
+
+            td.appendChild(nameInput);
+            td.appendChild(commentTextarea);
+            td.appendChild(combinedInput);
+            td.classList.add("divFix");
+            tr.appendChild(td);
+            table.appendChild(tr);
+            mainBlock.appendChild(table);
+        });
+
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        table {
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <table id="myTable">
+        <tr>
+            <td>
+                <div class="number">№</div>
+            </td>
+            <td>
+                <div class="FirstName">FirstName</div>
+            </td>
+            <td>
+                <div class="LastName">LastName</div>
+            </td>
+        </tr>
+    </table>
+
+    <input type="text" id="addPersonFirstName">
+    <input type="text" id="addPersonLastName">
+    <button id="checkButton">Додати</button>
+    <script>
+        let count = 0;
+        let myTable = document.getElementById("myTable");
+
+        checkButton.addEventListener("click", function () {
+            let addPersonFirstName = document.getElementById("addPersonFirstName");
+            let addPersonLastName = document.getElementById("addPersonLastName");
+
+            let newPersonFirstName = addPersonFirstName.value;
+            let newPersonLastName = addPersonLastName.value;
+
+            let tr = document.createElement("tr");
+
+            let tdNumber = document.createElement("td");
+            tdNumber.innerHTML = "<div>" + count + "</div>";
+            tr.appendChild(tdNumber);
+
+            let tdFirstName = document.createElement("td");
+            tdFirstName.innerHTML = "<div>" + newPersonFirstName + "</div>";
+            tr.appendChild(tdFirstName);
+
+            let tdLastName = document.createElement("td");
+            tdLastName.innerHTML = "<div>" + newPersonLastName + "</div>";
+            tr.appendChild(tdLastName);
+
+            count++;
+
+            myTable.appendChild(tr);
+        });
+    </script>
+</body>
+
+</html>

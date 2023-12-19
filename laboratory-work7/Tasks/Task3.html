@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+    <style>
+        #container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        #teleportingButton {
+            position: absolute;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button id="teleportingButton">нажми</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("container");
+            const teleportingButton = document.getElementById("teleportingButton");
+
+            container.addEventListener("mousemove", function(e) {
+                teleportingButton.addEventListener("mouseover", function() {
+                    const containerRect = container.getBoundingClientRect();
+                    const buttonRect = teleportingButton.getBoundingClientRect();
+
+                    const newX = Math.floor(Math.random() * (containerRect.width - buttonRect.width));
+                    const newY = Math.floor(Math.random() * (containerRect.height - buttonRect.height));
+
+                    teleportingButton.style.left = newX + "px";
+                    teleportingButton.style.top = newY + "px";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

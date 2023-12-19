@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task2</title>
+    <style>
+        #circle-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: brown;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .active {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="circle-container"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("circle-container");
+            const circles = createRandomCircles(20);
+
+            let activeIndex = 0;
+            circles[activeIndex].classList.add('active');
+
+            function createRandomCircles(numCircles) {
+                const result = [];
+                for (let i = 0; i < numCircles; i++) {
+                    const circle = document.createElement('div');
+                    circle.className = 'circle';
+                    const radius = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+                    const left = Math.floor(Math.random() * (container.clientWidth - radius * 2)) + radius;
+                    const top = Math.floor(Math.random() * (container.clientHeight - radius * 2)) + radius;
+                    circle.style.width = `${radius * 2}px`;
+                    circle.style.height = `${radius * 2}px`;
+                    circle.style.left = `${left}px`;
+                    circle.style.top = `${top}px`;
+                    circle.addEventListener('click', () => setActiveCircle(i));
+                    container.appendChild(circle);
+                    result.push(circle);
+                }
+                return result;
+            }
+
+            function setActiveCircle(index) {
+                circles[activeIndex].classList.remove('active');
+                activeIndex = index;
+                circles[activeIndex].classList.add('active');
+            }
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Tab') {
+                    event.preventDefault();
+                    const direction = event.shiftKey ? -1 : 1;
+                    let newIndex = (activeIndex + direction + circles.length) % circles.length;
+                    setActiveCircle(newIndex);
+                } else if (event.key.startsWith('Arrow')) {
+                    event.preventDefault();
+                    const direction = getDirection(event.key);
+                    moveActiveCircle(direction);
+                }
+            });
+
+            function getDirection(arrowKey) {
+                switch (arrowKey) {
+                    case 'ArrowUp':
+                        return 'up';
+                    case 'ArrowDown':
+                        return 'down';
+                    case 'ArrowLeft':
+                        return 'left';
+                    case 'ArrowRight':
+                        return 'right';
+                    default:
+                        return '';
+                }
+            }
+
+            function moveActiveCircle(direction) {
+                const step = 10;
+                const circle = circles[activeIndex];
+
+                let newTop = parseInt(circle.style.top) || 0;
+                let newLeft = parseInt(circle.style.left) || 0;
+
+                switch (direction) {
+                    case 'up':
+                        newTop = Math.max(newTop - step, 0);
+                        break;
+                    case 'down':
+                        newTop = Math.min(newTop + step, container.clientHeight - circle.clientHeight);
+                        break;
+                    case 'left':
+                        newLeft = Math.max(newLeft - step, 0);
+                        break;
+                    case 'right':
+                        newLeft = Math.min(newLeft + step, container.clientWidth - circle.clientWidth);
+                        break;
+                }
+
+                circle.style.top = `${newTop}px`;
+                circle.style.left = `${newLeft}px`;
+            }
+        });
+    </script>
+</body>
+
+</html>

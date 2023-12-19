@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task2</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .container1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .square {
+            width: 20px;
+            height: 20px;
+            margin: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="binaryInput" rows="5" cols="30"></textarea>
+    <button onclick="generateSquares()">Генерувати квадратики</button>
+    <div class="container1" id="squaresContainer"></div>
+ 
+    <script>
+        function generateSquares() {
+            const textarea = document.getElementById('binaryInput');
+            const squaresContainer = document.getElementById('squaresContainer');
+
+            squaresContainer.innerHTML = ''; 
+
+            const lines = textarea.value.split('\n');
+
+            lines.forEach(line => {
+                const row = document.createElement('div');
+                row.classList.add('container');
+                let newline = document.createElement("br");
+
+                for (let i = 0; i < line.length; i++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.style.backgroundColor = line[i] === '1' ? 'black' : 'white';
+
+                    row.appendChild(square);
+                }
+
+                squaresContainer.appendChild(row);
+            });
+        }
+    </script>
+</body>
+
+</html>

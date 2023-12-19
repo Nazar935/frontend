@@ -1,0 +1,16 @@
+div {
+    border: 2px lightskyblue solid;
+    border-radius: 7px;
+    min-width: 300px;
+    max-width: 300px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+input, textarea, input:focus-visible, textarea:focus-visible {
+    border: 2px lightskyblue solid;
+}
+
+.active {
+    background-color: rgb(166, 210, 224);
+}

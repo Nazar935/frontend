@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="clock" style="position: fixed; top: 10px; right: 10px; font-size: 24px;"></div>
+
+    <div class="timer" id="timer1">00:10:00</div>
+    <button onclick="startTimer(1)">Старт</button>
+    <button onclick="stopTimer(1)">Стоп</button>
+    <button onclick="resetTimer(1)">Скидання</button><br>
+
+    <div class="timer" id="timer2">01:30:00</div>
+    <button onclick="startTimer(2)">Старт</button>
+    <button onclick="stopTimer(2)">Стоп</button>
+    <button onclick="resetTimer(2)">Скидання</button><br>
+
+    <div class="timer" id="timer3">00:05:00</div>
+    <button onclick="startTimer(3)">Старт</button>
+    <button onclick="stopTimer(3)">Стоп</button>
+    <button onclick="resetTimer(3)">Скидання</button><br>
+
+    <div id="slideshow-container">
+        <div class="mySlides">
+            <img src="img/1.jpg" alt="Зображення 1">
+        </div>
+
+        <div class="mySlides">
+            <img src="img/2.jpg" alt="Зображення 2">
+        </div>
+
+        <div class="mySlides">
+            <img src="img/3.jpg" alt="Зображення 3">
+        </div>
+    </div>
+
+    <div class="block" id="block1"></div>
+    <div class="block" id="block2"></div>
+    <div class="block" id="block3"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>

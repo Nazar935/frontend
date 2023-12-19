@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task4</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: #3498db;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <ul id="selectableList">
+        <li>Елемент 1</li>
+        <li>Елемент 2</li>
+        <li>Елемент 3</li>
+        <li>Елемент 4</li>
+        <li>Елемент 5</li>
+    </ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectableList = document.getElementById("selectableList");
+            const listItems = selectableList.getElementsByTagName("li");
+
+            selectableList.addEventListener("click", function(e) {
+                const clickedItem = e.target;
+
+                if (e.ctrlKey || e.metaKey) {
+                    clickedItem.classList.toggle("selected");
+                } else {
+                    Array.from(listItems).forEach(item => {
+                        if (item !== clickedItem) {
+                            item.classList.remove("selected");
+                        }
+                    });
+
+                    clickedItem.classList.toggle("selected");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.invisibleElement {
+    display: none;
+    padding: 10px; 
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-top: 0; 
+}
+
+.labelA {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    background: #e0e0e0; 
+    transition: background .3s ease-out;
+    border: 1px solid #ccc; /* Додали рамку */
+    border-bottom: 0; /* Видалили нижню рамку для зручності */
+    border-top-left-radius: 5px; /* Закруглили верхні кути */
+    border-top-right-radius: 5px;
+}
+
+.inputA[type=checkbox] {
+    position: absolute;
+    appearance: none;
+}
+
+.inputA[type=checkbox]:checked + .invisibleElement {
+    display: block;
+    border-top: 1px solid #ccc; /* Додали верхню рамку для активного стану */
+}
+
+.acordeonStyle {
+    border: 1px solid #ccc;
+    margin-bottom: 10px; /* Додали відступ між секціями акордеону */
+}

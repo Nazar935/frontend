@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task5</title>
+    <style>
+        #slider {
+            width: 300px;
+            height: 20px;
+            background-color: #ccc;
+            position: relative;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+
+        #sliderHandle {
+            width: 20px;
+            height: 50px;
+            background-color: orange;
+            border-radius: 20%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div id="sliderHandle"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slider = document.getElementById("slider");
+            const sliderHandle = document.getElementById("sliderHandle");
+
+            let isDragging = false;
+
+            sliderHandle.addEventListener("mousedown", function(e) {
+                isDragging = true;
+            });
+
+            document.addEventListener("mouseup", function() {
+                isDragging = false;
+            });
+
+            document.addEventListener("mousemove", function(e) {
+                if (isDragging) {
+                    const sliderRect = slider.getBoundingClientRect();
+                    const newPosition = Math.min(Math.max(e.clientX - sliderRect.left, 0), sliderRect.width);
+
+                    sliderHandle.style.left = newPosition + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

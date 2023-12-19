@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Task5</title>
+    <style>
+        td {
+            width: 30px;
+            height: 30px;
+            border: 4px solid white;
+        }
+
+        .tdStyle {
+            width: 30px;
+            height: 30px;
+            border: 1px solid black;
+            empty-cells: show;
+        }
+
+        button {
+            background-color: #4CAF50;
+            /* Задає колір фону */
+            color: white;
+            /* Задає колір тексту */
+            padding: 10px 20px;
+            /* Задає відступи */
+            font-size: 16px;
+            /* Задає розмір шрифту */
+            cursor: pointer;
+            /* Змінює вигляд курсору при наведенні */
+            border: none;
+            /* Задає відсутність рамки */
+            border-radius: 5px;
+            /* Задає закруглені кути */
+        }
+
+        #checkButton:hover {
+            background-color: #45a049;
+            /* Змінює колір фону при наведенні */
+        }
+
+        .divStyle {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border: 0px;
+            empty-cells: show;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="checkButton">Змінити колір</button>
+    <table id="myTable">
+        <tr>
+            <td style="background-color: red;" id="colorRed" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: blue;" id="colorBlue" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: yellow;" id="colorYellow" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: green;" id="colorGreen" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: black;" id="colorBlack" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: white;" id="colorWhite" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: pink;" id="colorPink" data-active="false" ondblclick="doubleClick(this)"></td>
+            <td style="background-color: purple;" id="colorPurple" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+            <td style="background-color: magenta;" id="colorMagenta" data-active="false" ondblclick="doubleClick(this)">
+            </td>
+        </tr>
+    </table>
+    <table id="tablePaint"></table>
+    <script>
+
+        function doubleClick(color) {
+            let activeColor = document.querySelectorAll("td");
+            for (let i = 0; i < activeColor.length; i++) {
+                if (activeColor[i].getAttribute("data-active") === "true") {
+                    activeColor[i].setAttribute("data-active", "false");
+                    activeColor[i].style.border = "4px solid white";
+
+                }
+            }
+            color.style.border = "4px solid lightblue";
+            color.setAttribute("data-active", "true");
+        }
+        let color = "";
+        let checkButton = document.querySelector("#checkButton");
+        color = document.querySelector("#inputColor");
+        checkButton.addEventListener("click", function () {
+            let allColors = document.querySelectorAll("td");
+            let rectangleGradient = document.querySelector("#gradient");
+            for (let i = 0; i < allColors.length; i++) {
+                switch (allColors[i].id) {
+                    case "colorRed": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "red";
+                        }
+                    }
+                        break;
+                    case "colorBlue": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "blue";
+                        }
+                    }
+                        break;
+                    case "colorYellow": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "yellow";
+                        }
+                    }
+                        break;
+                    case "colorGreen": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "green";
+                        }
+                    }
+                        break;
+                    case "colorBlack": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "black";
+                        }
+                    }
+                        break;
+                    case "colorWhite": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "white";
+                        }
+                    }
+                        break;
+                    case "colorPink": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "pink";
+                        }
+                    }
+                        break;
+                    case "colorPurple": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "purple";
+                        }
+                    }
+                        break;
+                    case "colorMagenta": {
+                        if (allColors[i].getAttribute("data-active") === "true") {
+                            color = "magenta";
+                        }
+                    }
+                        break;
+                }
+            }
+        });
+
+        let tablePaint = document.querySelector("#tablePaint");
+        for (let i = 0; i < 10; i++) {
+            let tr = document.createElement("tr");
+            for (let j = 0; j < 10; j++) {
+                let td = document.createElement("td");
+                td.classList.add("tdStyle");
+                td.addEventListener("click", function () {
+                    if (color != null) {
+
+                        td.style.backgroundColor = color;
+                    }
+                });
+                tr.appendChild(td);
+            }
+            tablePaint.appendChild(tr);
+        }
+    </script>
+</body>
+
+</html>

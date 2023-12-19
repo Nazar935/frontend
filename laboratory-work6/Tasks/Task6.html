@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .card .card-inner {
+            width: 200px;
+            height: 300px;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .card .card-inner .card-face {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            backface-visibility: hidden;
+        }
+
+        .card .card-inner .front {
+            background-image: url("img/card_front.png");
+        }
+
+        .card .card-inner .back {
+            background-image: url("img/card_back.png");
+
+            transform: rotateY(180deg);
+        }
+
+        .card.face-down .card-inner {
+            transform: rotateY(180deg);
+        }
+    </style>
+    <title>Task6</title>
+</head>
+
+<body>
+    <div class="card" onclick="rotateCard(this)">
+        <div class="card-inner">
+            <div class="card-face front"></div>
+            <div class="card-face back"></div>
+        </div>
+        
+    </div>
+
+    <script>
+        function rotateCard(card) {
+            card.classList.toggle('face-down');
+        }
+    </script>
+</body>
+
+</html>
